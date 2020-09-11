@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:padding="10dp"
+    android:background="@drawable/dialogbg"
+    android:layout_height="match_parent">
+
+    <ImageButton
+        android:layout_gravity="end"
+        android:id="@+id/closeBtn"
+        app:tint="@color/grey"
+        android:background="#0000"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:tint="@color/grey"
+        app:srcCompat="@drawable/ic_close" />
+
+    <TextView
+        android:padding="30dp"
+        android:id="@+id/textView"
+        android:gravity="center"
+        style="@style/TextAppearance.AppCompat.Large"
+        android:layout_width="match_parent"
+        android:textColor="@color/grey"
+        android:layout_height="wrap_content"
+        android:text="Are you sure?" />
+
+
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/confirmBtn"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+android:textColor="@color/colorAccent"
+        app:strokeColor="@color/colorAccent"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:text="Yes" />
+
+
+</LinearLayout>
