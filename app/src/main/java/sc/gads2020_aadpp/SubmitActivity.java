@@ -36,7 +36,7 @@ public class SubmitActivity extends AppCompatActivity {
         setContentView(R.layout.activity_submit);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Google Africa");
         getSupportActionBar().setSubtitle("Developer Scholarship");
         getSupportActionBar().setIcon(R.mipmap.ic_launcher_round);
@@ -124,28 +124,31 @@ getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             public void onClick(View view) {
 
 
-                SubmitItem item = new SubmitItem(email.getText().toString(), name.getText().toString(), surname.getText().toString(), link.getText().toString());
+            //    SubmitItem item = new SubmitItem(email.getText().toString(), name.getText().toString(), surname.getText().toString(), link.getText().toString());
 
 
-                ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
+                ApiInterface apiService = ApiClient.getClient(ApiClient.FORMS_BASE_URL).create(ApiInterface.class);
 
 
 
-                   Call<SubmitItem> call =  apiService.submit(item);
-                call.enqueue(new Callback<SubmitItem>() {
+                   Call<Void> call =  apiService.submit(email.getText().toString(), name.getText().toString(), surname.getText().toString(), link.getText().toString());
+                call.enqueue(new Callback<Void>() {
                     @Override
-                    public void onResponse(Call<SubmitItem> call, Response<SubmitItem> response) {
-                        Log.e("RESPONSE - ",""+response.body()) ;
-                        Toast.makeText(SubmitActivity.this, ""+response.body(), Toast.LENGTH_SHORT).show();
+                    public void onResponse(Call<Void> call, Response<Void> response) {
+                        Log.e("RESPONSE - ",""+response.code()) ;
+                        Toast.makeText(SubmitActivity.this, " > "+response.code()+" >"+response.body(), Toast.LENGTH_SHORT).show();
                         showResultDialog(true);
                     }
 
                     @Override
-                    public void onFailure(Call<SubmitItem> call, Throwable t) {
+                    public void onFailure(Call<Void> call, Throwable t) {
                         Log.e("FAILED ","Response = "+t.toString());
                         showResultDialog(false);
                               }
                 });
+
+                dialog.dismiss();
+                clearFields();
             }
         });
         dialog.show();
@@ -153,6 +156,11 @@ getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
 
-
+void clearFields(){
+    email.setText("");
+    name.setText("");
+    surname.setText("");
+    link.setText("");
+}
 
 }

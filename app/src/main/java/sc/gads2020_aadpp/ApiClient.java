@@ -5,7 +5,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiClient {
     public static String BASE_URL ="https://gadsapi.herokuapp.com/api/";
-    public static String FORMS_BASE_URL = "https://docs.google.com/forms/d/e/1FAIpQLSf9d1TcNU6zc6KR8bSEM41Z1g1zl35cwZr2xyjIhaMAz8WChQ/";
+    public static String FORMS_BASE_URL = "https://docs.google.com/forms/d/e/";
     private static Retrofit retrofit;
     public static Retrofit getClient(){
         if(retrofit == null){
