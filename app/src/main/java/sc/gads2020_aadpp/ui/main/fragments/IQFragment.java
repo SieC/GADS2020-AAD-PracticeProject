@@ -71,9 +71,14 @@ public class IQFragment extends Fragment {
             call.enqueue(new Callback<List<IQItem>>() {
                 @Override
                 public void onResponse(Call<List<IQItem>> call, Response<List<IQItem>> response) {
-                    list.addAll(response.body()) ;
-                    Log.d("TAG","Response = "+list);
+                  try {
+                      list.addAll(response.body());
+                      Log.d("TAG", "Response = " + list);
+                  }catch (Exception e){
+                      Log.e("Exception",e.toString());
+                      Toast.makeText(getActivity(), "An error occurred", Toast.LENGTH_SHORT).show();
 
+                  }
                     recyclerView.setAdapter(new MyIQItemRecyclerViewAdapter(getActivity(),list));
 
                 }

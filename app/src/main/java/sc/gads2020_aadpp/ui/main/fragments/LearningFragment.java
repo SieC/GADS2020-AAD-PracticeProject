@@ -74,8 +74,15 @@ public class LearningFragment extends Fragment {
             call.enqueue(new Callback<List<LearningItem>>() {
                 @Override
                 public void onResponse(Call<List<LearningItem>> call, Response<List<LearningItem>> response) {
-                    list.addAll(response.body()) ;
-                    Log.d("TAG","Response = "+list);
+                try {
+                    Log.e("TAG", response.body().toString());
+                    list.addAll(response.body());
+                }catch(Exception e){
+                    Log.e("Exception",e.toString());
+                    Toast.makeText(getActivity(), "An error occurred", Toast.LENGTH_SHORT).show();
+
+                }
+                    Log.e("TAG","Response = "+list);
                     recyclerView.setAdapter(new MyLearningItemRecyclerViewAdapter(getActivity(),list));
 
                 }
